@@ -35,6 +35,22 @@ This project uses the **Token Bucket** algorithm.
 - If the bucket has at least 1 token, the request is allowed
 - If the bucket is empty, the request is rejected
 
+### Architecture Flow
+
+```mermaid
+flowchart TD
+    A[Client Request] --> B[RateLimiterMiddleware]
+    B --> C{Excluded Path?}
+    C -->|Yes| D[Forward Request]
+    C -->|No| E[Identify Client by IP]
+    E --> F[Fetch Bucket from PostgreSQL]
+    F --> G[Refill Tokens Based on Time Elapsed]
+    G --> H{Token Available?}
+    H -->|Yes| I[Consume 1 Token]
+    I --> J[Allow Request]
+    H -->|No| K[Return 429 Too Many Requests]
+ ```
+
 ### Why Token Bucket?
 
 The token bucket algorithm allows short bursts of traffic while still enforcing an average rate over time.
@@ -100,3 +116,23 @@ app/
 │   └── client.py
 │
 └── main.py
+```
+
+---
+
+git clone https://github.com/PrakritiNegii/RateLimiter
+
+# create virtual environment
+python -m venv venv
+
+# activate it (Windows)
+venv\Scripts\activate
+
+# install dependencies
+pip install -r requirements.txt
+
+# run server
+uvicorn app.main:app --reload
+
+# Open in browser:
+http://127.0.0.1:8000/docs
