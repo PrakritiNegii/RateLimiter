@@ -119,20 +119,20 @@ app/
 ```
 
 ---
-
+# How to run 
 git clone https://github.com/PrakritiNegii/RateLimiter
 
-# create virtual environment
+### create virtual environment
 python -m venv venv
 
-# activate it (Windows)
+### activate it (Windows)
 venv\Scripts\activate
 
-# install dependencies
+### install dependencies
 pip install -r requirements.txt
 
-# run server
+### run server
 uvicorn app.main:app --reload
 
-# Open in browser:
+### Open in browser:
 http://127.0.0.1:8000/docs
