@@ -4,6 +4,10 @@ A backend rate limiting service built using **FastAPI** and **PostgreSQL** by ap
 
 This project was created to understand how rate limiting works in real backend systems, how middleware can intercept requests, and how token refill logic can be implemented using database-backed state.
 
+## Versions
+- V1: PostgreSQL-based rate limiter (current main branch)
+- V2: Redis-based rate limiter (v2-redis branch)
+
 ---
 
 ## What is Rate Limiting?
